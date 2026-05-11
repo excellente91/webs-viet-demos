@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spa & Massage Đà Nẵng - Wellness Center Da Nang</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; color: #333; line-height: 1.6; }
+        
+        /* Header */
+        header { background: linear-gradient(135deg, #6b5b95, #8e7cb3); color: white; padding: 20px 0; text-align: center; position: relative; }
+        header h1 { font-size: 2em; margin-bottom: 5px; }
+        header p { font-size: 1.1em; opacity: 0.9; }
+        .lang-toggle { position: absolute; top: 15px; right: 20px; background: rgba(255,255,255,0.2); border: none; color: white; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9em; }
+        
+        /* Hero */
+        .hero { background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1200') center/cover; height: 400px; display: flex; align-items: center; justify-content: center; color: white; text-align: center; padding: 20px; }
+        .hero h2 { font-size: 2em; margin-bottom: 15px; }
+        .hero p { font-size: 1.2em; max-width: 600px; margin: 0 auto 20px; }
+        .cta-button { background: #6b5b95; color: white; padding: 15px 35px; border: none; border-radius: 30px; font-size: 1.1em; cursor: pointer; text-decoration: none; display: inline-block; }
+        
+        /* Section */
+        .section { padding: 60px 20px; max-width: 1100px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 1.8em; color: #6b5b95; margin-bottom: 40px; }
+        
+        /* Services Grid */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .service-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .service-card:hover { transform: translateY(-5px); }
+        .service-card img { width: 100%; height: 200px; object-fit: cover; }
+        .service-card .info { padding: 20px; }
+        .service-card h3 { color: #333; margin-bottom: 8px; }
+        .service-card p { color: #666; font-size: 0.95em; margin-bottom: 10px; }
+        .service-card .price { color: #6b5b95; font-size: 1.3em; font-weight: bold; }
+        .service-card .duration { color: #888; font-size: 0.9em; }
+        
+        /* Pricing Table */
+        .pricing-section { background: #f9f9f9; padding: 60px 20px; }
+        .pricing-table { max-width: 800px; margin: 0 auto; background: white; border-radius: 15px; padding: 40px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .pricing-row { display: flex; justify-content: space-between; padding: 20px 0; border-bottom: 1px solid #eee; align-items: center; }
+        .pricing-row:last-child { border: none; }
+        .pricing-row .service-info { flex: 1; }
+        .pricing-row .service-info h4 { color: #333; margin-bottom: 3px; }
+        .pricing-row .service-info span { color: #888; font-size: 0.9em; }
+        .pricing-row .price { color: #6b5b95; font-size: 1.2em; font-weight: bold; margin-left: 20px; }
+        
+        /* Features */
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 40px; }
+        .feature { text-align: center; padding: 30px 20px; background: white; border-radius: 12px; box-shadow: 0 3px 15px rgba(0,0,0,0.08); }
+        .feature .icon { font-size: 2.5em; margin-bottom: 15px; }
+        .feature h4 { color: #6b5b95; margin-bottom: 8px; }
+        .feature p { color: #666; font-size: 0.95em; }
+        
+        /* Booking Section */
+        .booking-section { background: linear-gradient(135deg, #6b5b95, #8e7cb3); color: white; padding: 60px 20px; }
+        .booking-section .section-title { color: white; }
+        .booking-form { max-width: 600px; margin: 0 auto; background: rgba(255,255,255,0.15); padding: 40px; border-radius: 15px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px 15px; border: none; border-radius: 8px; font-size: 1em; }
+        .form-group textarea { height: 100px; resize: vertical; }
+        .submit-btn { background: white; color: #6b5b95; padding: 15px 40px; border: none; border-radius: 30px; font-size: 1.1em; font-weight: bold; cursor: pointer; width: 100%; }
+        
+        /* Info Cards */
+        .info-section { padding: 60px 20px; }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto; }
+        .info-card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); text-align: center; }
+        .info-card .icon { font-size: 3em; margin-bottom: 15px; }
+        .info-card h3 { color: #6b5b95; margin-bottom: 10px; }
+        .info-card p { color: #666; }
+        
+        /* Footer */
+        footer { background: #222; color: white; padding: 30px 20px; text-align: center; }
+        footer p { opacity: 0.8; }
+        
+        /* Floating contact */
+        .floating-contact { position: fixed; bottom: 20px; right: 20px; z-index: 100; }
+        .floating-contact a { display: block; width: 55px; height: 55px; border-radius: 50%; background: #25d366; color: white; text-align: center; line-height: 55px; font-size: 28px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); text-decoration: none; }
+        
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.5em; }
+            .hero h2 { font-size: 1.4em; }
+            .section { padding: 40px 15px; }
+            .pricing-row { flex-direction: column; align-items: flex-start; }
+            .pricing-row .price { margin-left: 0; margin-top: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>💆 Spa & Massage Đà Nẵng</h1>
+        <p>Wellness & Relaxation Center in Da Nang</p>
+        <button class="lang-toggle" onclick="toggleLang()">EN / VI</button>
+    </header>
+    
+    <div class="hero">
+        <div>
+            <h2 data-en="Relax, Rejuvenate, Refresh" data-vi="Thư Giãn, Hồi Sinh, Tươi Mới">Relax, Rejuvenate, Refresh</h2>
+            <p data-en="Escape the everyday stress with our professional massage and spa services. Experience traditional Vietnamese wellness treatments." data-vi="Thoát khỏi căng thẳng hàng ngày với dịch vụ massage và spa chuyên nghiệp. Trải nghiệm các liệu pháp wellness truyền thống Việt Nam.">Escape the everyday stress with our professional massage and spa services. Experience traditional Vietnamese wellness treatments.</p>
+            <a href="#booking" class="cta-button" data-en="Book Now" data-vi="Đặt Lịch Ngay">Book Now</a>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2 class="section-title" data-en="Our Services" data-vi="Dịch Vụ Của Chúng Tôi">Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600" alt="Traditional Massage">
+                <div class="info">
+                    <h3 data-en="Vietnamese Traditional Massage" data-vi="Massage Truyền Thống Việt Nam">Vietnamese Traditional Massage</h3>
+                    <p data-en="Traditional full-body massage using ancient techniques to release tension and improve circulation." data-vi="Massage toàn thân truyền thống sử dụng kỹ thuật cổ xưa giúp giải tỏa căng thẳng và cải thiện tuần hoàn.">Traditional full-body massage using ancient techniques to release tension and improve circulation.</p>
+                    <div class="price">350,000₫</div>
+                    <div class="duration" data-en="60 minutes" data-vi="60 phút">60 minutes</div>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=600" alt="Aromatherapy">
+                <div class="info">
+                    <h3 data-en="Aromatherapy Massage" data-vi="Massage Aroma Therapy">Aromatherapy Massage</h3>
+                    <p data-en="Essential oils combined with gentle massage for deep relaxation and stress relief." data-vi="Tinh dầu kết hợp với massage nhẹ nhàng mang lại thư giãn sâu và giảm stress.">Essential oils combined with gentle massage for deep relaxation and stress relief.</p>
+                    <div class="price">450,000₫</div>
+                    <div class="duration" data-en="90 minutes" data-vi="90 phút">90 minutes</div>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1519824145371-84c8c017b4e8?w=600" alt="Foot Massage">
+                <div class="info">
+                    <h3 data-en="Reflexology Foot Massage" data-vi="Massage Chân Bấm Huyệt">Reflexology Foot Massage</h3>
+                    <p data-en="Targeted pressure on reflex points of the feet to relieve fatigue and improve wellbeing." data-vi="Bấm huyệt chân giúp giảm mệt mỏi và cải thiện sức khỏe tổng thể.">Targeted pressure on reflex points of the feet to relieve fatigue and improve wellbeing.</p>
+                    <div class="price">250,000₫</div>
+                    <div class="duration" data-en="45 minutes" data-vi="45 phút">45 minutes</div>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600" alt="Facial Treatment">
+                <div class="info">
+                    <h3 data-en="Facial Treatment" data-vi="Chăm Sóc Da Mặt">Facial Treatment</h3>
+                    <p data-en="Rejuvenating facial treatment with natural products for glowing, healthy skin." data-vi="Liệu pháp chăm sóc da mặt với sản phẩm tự nhiên giúp da sáng khỏe.">Rejuvenating facial treatment with natural products for glowing, healthy skin.</p>
+                    <div class="price">400,000₫</div>
+                    <div class="duration" data-en="60 minutes" data-vi="60 phút">60 minutes</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="pricing-section">
+        <h2 class="section-title" data-en="Price List" data-vi="Bảng Giá">Price List</h2>
+        <div class="pricing-table">
+            <div class="pricing-row">
+                <div class="service-info">
+                    <h4 data-en="Traditional Vietnamese Massage" data-vi="Massage Truyền Thống Việt Nam">Traditional Vietnamese Massage</h4>
+                    <span data-en="Full body, 60 min" data-vi="Toàn thân, 60 phút">Full body, 60 min</span>
+                </div>
+                <div class="price">350,000₫</div>
+            </div>
+            <div class="pricing-row">
+                <div class="service-info">
+                    <h4 data-en="Aromatherapy Massage" data-vi="Massage Aroma Therapy">Aromatherapy Massage</h4>
+                    <span data-en="With essential oils, 90 min" data-vi="Tinh dầu, 90 phút">With essential oils, 90 min</span>
+                </div>
+                <div class="price">450,000₫</div>
+            </div>
+            <div class="pricing-row">
+                <div class="service-info">
+                    <h4 data-en="Reflexology Foot Massage" data-vi="Massage Chân Bấm Huyệt">Reflexology Foot Massage</h4>
+                    <span data-en="Foot pressure points, 45 min" data-vi="Bấm huyệt chân, 45 phút">Foot pressure points, 45 min</span>
+                </div>
+                <div class="price">250,000₫</div>
+            </div>
+            <div class="pricing-row">
+                <div class="service-info">
+                    <h4 data-en="Deep Tissue Massage" data-vi="Massage Mô Mềm Sâu">Deep Tissue Massage</h4>
+                    <span data-en="Targeted muscle relief, 75 min" data-vi="Giải phóng cơ bắp, 75 phút">Targeted muscle relief, 75 min</span>
+                </div>
+                <div class="price">500,000₫</div>
+            </div>
+            <div class="pricing-row">
+                <div class="service-info">
+                    <h4 data-en="Facial Treatment" data-vi="Chăm Sóc Da Mặt">Facial Treatment</h4>
+                    <span data-en="Natural products, 60 min" data-vi="Sản phẩm tự nhiên, 60 phút">Natural products, 60 min</span>
+                </div>
+                <div class="price">400,000₫</div>
+            </div>
+            <div class="pricing-row">
+                <div class="service-info">
+                    <h4 data-en="Hot Stone Massage" data-vi="Massage Đá Nóng">Hot Stone Massage</h4>
+                    <span data-en="Relaxing heat therapy, 75 min" data-vi="Liệu pháp đá nóng, 75 phút">Relaxing heat therapy, 75 min</span>
+                </div>
+                <div class="price">550,000₫</div>
+            </div>
+            <div class="pricing-row">
+                <div class="service-info">
+                    <h4 data-en="Body Scrub & Wrap" data-vi="Tẩy Tế Bào & Ủ Body">Body Scrub & Wrap</h4>
+                    <span data-en="Full body treatment, 90 min" data-vi="Toàn thân, 90 phút">Full body treatment, 90 min</span>
+                </div>
+                <div class="price">600,000₫</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2 class="section-title" data-en="Why Choose Us" data-vi="Tại Sao Chọn Chúng Tôi">Why Choose Us</h2>
+        <div class="features-grid">
+            <div class="feature">
+                <div class="icon">🌿</div>
+                <h4 data-en="Natural Products" data-vi="Sản Phẩm Tự Nhiên">Natural Products</h4>
+                <p data-en="We use 100% natural oils and skincare products" data-vi="Chúng tôi sử dụng 100% tinh dầu và sản phẩm chăm sóc da tự nhiên">We use 100% natural oils and skincare products</p>
+            </div>
+            <div class="feature">
+                <div class="icon">👩‍⚕️</div>
+                <h4 data-en="Certified Therapists" data-vi="Kỹ Thuật Viên Có Chứng Chỉ">Certified Therapists</h4>
+                <p data-en="Professional staff trained in traditional techniques" data-vi="Nhân viên chuyên nghiệp được đào tạo kỹ thuật truyền thống">Professional staff trained in traditional techniques</p>
+            </div>
+            <div class="feature">
+                <div class="icon">🏠</div>
+                <h4 data-en="Private Rooms" data-vi="Phòng Riêng Tư">Private Rooms</h4>
+                <p data-en="Clean, comfortable, and private treatment rooms" data-vi="Phòng điều trị sạch sẽ, thoải mái và riêng tư">Clean, comfortable, and private treatment rooms</p>
+            </div>
+            <div class="feature">
+                <div class="icon">💰</div>
+                <h4 data-en="Affordable Prices" data-vi="Giá Cả Phải Chăng">Affordable Prices</h4>
+                <p data-en="Premium spa experience at local prices" data-vi="Trải nghiệm spa cao cấp với giá địa phương">Premium spa experience at local prices</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="info-section">
+        <div class="info-grid">
+            <div class="info-card">
+                <div class="icon">🕐</div>
+                <h3 data-en="Opening Hours" data-vi="Giờ Mở Cửa">Opening Hours</h3>
+                <p data-en="Daily: 10:00 AM - 10:00 PM<br>Open 7 days a week" data-vi="Hàng ngày: 10:00 - 22:00<br>Mở cửa 7 ngày một tuần">Daily: 10:00 AM - 10:00 PM<br>Open 7 days a week</p>
+            </div>
+            <div class="info-card">
+                <div class="icon">📍</div>
+                <h3 data-en="Location" data-vi="Địa Chỉ">Location</h3>
+                <p data-en="45 Dong Da Street<br>Da Nang City, Vietnam" data-vi="45 Đông Đa<br>Đà Nẵng, Việt Nam">45 Dong Da Street<br>Da Nang City, Vietnam</p>
+            </div>
+            <div class="info-card">
+                <div class="icon">📞</div>
+                <h3 data-en="Contact" data-vi="Liên Hệ">Contact</h3>
+                <p>☎️ +84 90 345 6789</p>
+                <p>📧 spa@danangwellness.com</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="booking-section" id="booking">
+        <h2 class="section-title" data-en="Book Your Treatment" data-vi="Đặt Lịch Spa">Book Your Treatment</h2>
+        <div class="booking-form">
+            <form onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label data-en="Your Name" data-vi="Tên Của Bạn">Your Name</label>
+                    <input type="text" required placeholder="Enter your name / Nhập tên của bạn">
+                </div>
+                <div class="form-group">
+                    <label data-en="Phone Number" data-vi="Số Điện Thoại">Phone Number</label>
+                    <input type="tel" required placeholder="+84 ...">
+                </div>
+                <div class="form-group">
+                    <label data-en="Service" data-vi="Dịch Vụ">Service</label>
+                    <select>
+                        <option>Vietnamese Traditional Massage - 350,000₫</option>
+                        <option>Aromatherapy Massage - 450,000₫</option>
+                        <option>Reflexology Foot Massage - 250,000₫</option>
+                        <option>Deep Tissue Massage - 500,000₫</option>
+                        <option>Facial Treatment - 400,000₫</option>
+                        <option>Hot Stone Massage - 550,000₫</option>
+                        <option>Body Scrub & Wrap - 600,000₫</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label data-en="Preferred Date & Time" data-vi="Ngày & Giờ Ưu Tiên">Preferred Date & Time</label>
+                    <input type="datetime-local" required>
+                </div>
+                <div class="form-group">
+                    <label data-en="Message" data-vi="Lời Nhắn">Message</label>
+                    <textarea placeholder="Special requests or preferences / Yêu cầu đặc biệt"></textarea>
+                </div>
+                <button type="submit" class="submit-btn" data-en="Book Now" data-vi="Đặt Lịch Ngay">Book Now</button>
+            </form>
+        </div>
+    </div>
+    
+    <footer>
+        <p>📍 45 Dong Da, Da Nang | ☎️ +84 90 345 6789</p>
+        <p>💆 Spa & Massage Đà Nẵng - Wellness & Relaxation Center</p>
+    </footer>
+    
+    <div class="floating-contact">
+        <a href="https://wa.me/84903456789" title="WhatsApp">💬</a>
+    </div>
+    
+    <script>
+        let currentLang = 'en';
+        
+        function toggleLang() {
+            currentLang = currentLang === 'en' ? 'vi' : 'en';
+            document.querySelectorAll('[data-en]').forEach(el => {
+                const text = el.getAttribute('data-' + currentLang);
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = text;
+                } else {
+                    el.textContent = text;
+                }
+            });
+        }
+        
+        function handleSubmit(e) {
+            e.preventDefault();
+            alert(currentLang === 'en' ? 'Thank you! We will confirm your booking soon.' : 'Cảm ơn bạn! Chúng tôi sẽ xác nhận đặt lịch sớm.');
+        }
+    </script>
+</body>
+</html>
