@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhà Hàng Đà Nẵng - Vietnamese Restaurant Da Nang</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; color: #333; line-height: 1.6; }
+        
+        /* Header */
+        header { background: linear-gradient(135deg, #c0392b, #a93226); color: white; padding: 20px 0; text-align: center; position: relative; }
+        header h1 { font-size: 2em; margin-bottom: 5px; }
+        header p { font-size: 1.1em; opacity: 0.9; }
+        .lang-toggle { position: absolute; top: 15px; right: 20px; background: rgba(255,255,255,0.2); border: none; color: white; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9em; }
+        
+        /* Hero */
+        .hero { background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1552566626-52f8b828add9?w=1200') center/cover; height: 400px; display: flex; align-items: center; justify-content: center; color: white; text-align: center; padding: 20px; }
+        .hero h2 { font-size: 2em; margin-bottom: 15px; }
+        .hero p { font-size: 1.2em; max-width: 600px; margin: 0 auto 20px; }
+        .cta-button { background: #c0392b; color: white; padding: 15px 35px; border: none; border-radius: 30px; font-size: 1.1em; cursor: pointer; text-decoration: none; display: inline-block; }
+        
+        /* Section */
+        .section { padding: 60px 20px; max-width: 1100px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 1.8em; color: #c0392b; margin-bottom: 40px; }
+        
+        /* Menu Grid */
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .menu-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .menu-card:hover { transform: translateY(-5px); }
+        .menu-card img { width: 100%; height: 200px; object-fit: cover; }
+        .menu-card .info { padding: 20px; }
+        .menu-card h3 { color: #333; margin-bottom: 8px; }
+        .menu-card p { color: #666; font-size: 0.95em; margin-bottom: 10px; }
+        .menu-card .price { color: #c0392b; font-size: 1.3em; font-weight: bold; }
+        
+        /* Hours & Info */
+        .info-section { background: #f9f9f9; padding: 60px 20px; }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto; }
+        .info-card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); text-align: center; }
+        .info-card .icon { font-size: 3em; margin-bottom: 15px; }
+        .info-card h3 { color: #c0392b; margin-bottom: 10px; }
+        .info-card p { color: #666; }
+        .hours-table { margin-top: 15px; }
+        .hours-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #eee; }
+        .hours-row:last-child { border: none; }
+        
+        /* Gallery */
+        .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 40px; }
+        .gallery-grid img { width: 100%; height: 150px; object-fit: cover; border-radius: 10px; transition: transform 0.3s; cursor: pointer; }
+        .gallery-grid img:hover { transform: scale(1.05); }
+        
+        /* Contact Section */
+        .contact-section { background: #c0392b; color: white; padding: 60px 20px; }
+        .contact-section .section-title { color: white; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 900px; margin: 0 auto; }
+        .contact-info p { margin: 15px 0; font-size: 1.1em; display: flex; align-items: center; gap: 10px; }
+        .contact-form { background: rgba(255,255,255,0.1); padding: 40px; border-radius: 15px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px 15px; border: none; border-radius: 8px; font-size: 1em; }
+        .form-group textarea { height: 100px; resize: vertical; }
+        .submit-btn { background: white; color: #c0392b; padding: 15px 40px; border: none; border-radius: 30px; font-size: 1.1em; font-weight: bold; cursor: pointer; width: 100%; }
+        
+        /* Footer */
+        footer { background: #222; color: white; padding: 30px 20px; text-align: center; }
+        footer p { opacity: 0.8; }
+        
+        /* Floating contact */
+        .floating-contact { position: fixed; bottom: 20px; right: 20px; z-index: 100; }
+        .floating-contact a { display: block; width: 55px; height: 55px; border-radius: 50%; background: #25d366; color: white; text-align: center; line-height: 55px; font-size: 28px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); text-decoration: none; }
+        
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.5em; }
+            .hero h2 { font-size: 1.4em; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .section { padding: 40px 15px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🍜 Nhà Hàng Đà Nẵng</h1>
+        <p>Authentic Vietnamese Restaurant in Da Nang</p>
+        <button class="lang-toggle" onclick="toggleLang()">EN / VI</button>
+    </header>
+    
+    <div class="hero">
+        <div>
+            <h2 data-en="Taste the Authentic Vietnam" data-vi="Hương Vị Việt Nam Chân Chính">Taste the Authentic Vietnam</h2>
+            <p data-en="Fresh ingredients, traditional recipes, and modern twists. Experience the best local cuisine in Da Nang." data-vi="Nguyên liệu tươi, công thức truyền thống, và hương vị hiện đại. Trải nghiệm ẩm thực địa phương tốt nhất Đà Nẵng.">Fresh ingredients, traditional recipes, and modern twists. Experience the best local cuisine in Da Nang.</p>
+            <a href="#menu" class="cta-button" data-en="View Menu" data-vi="Xem Thực Đơn">View Menu</a>
+        </div>
+    </div>
+    
+    <div class="section" id="menu">
+        <h2 class="section-title" data-en="Our Popular Dishes" data-vi="Món Ăn Phổ Biến">Our Popular Dishes</h2>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600" alt="Pho Bo">
+                <div class="info">
+                    <h3 data-en="Beef Pho" data-vi="Phở Bò">Beef Pho</h3>
+                    <p data-en="Traditional rice noodle soup with tender beef slices, fresh herbs, and aromatic broth." data-vi="Bánh phở nước dùng đậm đà với thịt bò tái, rau thơm tươi.">Traditional rice noodle soup with tender beef slices, fresh herbs, and aromatic broth.</p>
+                    <div class="price">65,000₫</div>
+                </div>
+            </div>
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1562967916-eb82221dfb44?w=600" alt="Banh Mi">
+                <div class="info">
+                    <h3 data-en="Vietnamese Banh Mi" data-vi="Bánh Mì Việt Nam">Vietnamese Banh Mi</h3>
+                    <p data-en="Crispy baguette filled with grilled pork, pickled vegetables, and spicy mayo." data-vi="Bánh mì giòn với thịt nướng, đồ chua, và sốt cay.">Crispy baguette filled with grilled pork, pickled vegetables, and spicy mayo.</p>
+                    <div class="price">45,000₫</div>
+                </div>
+            </div>
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1503764654157-72d979d9af2f?w=600" alt="Fresh Spring Rolls">
+                <div class="info">
+                    <h3 data-en="Fresh Spring Rolls" data-vi="Gỏi Cuốn Tươi">Fresh Spring Rolls</h3>
+                    <p data-en="Rice paper rolls with shrimp, pork, vermicelli, and fresh vegetables. Light and healthy." data-vi="Cuốn bánh tráng với tôm, thịt, bún, rau tươi. Nhẹ và healthy.">Rice paper rolls with shrimp, pork, vermicelli, and fresh vegetables. Light and healthy.</p>
+                    <div class="price">35,000₫</div>
+                </div>
+            </div>
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1555126634-323283e090fa?w=600" alt="Bun Cha">
+                <div class="info">
+                    <h3 data-en="Bun Cha" data-vi="Bún Chả">Bun Cha</h3>
+                    <p data-en="Grilled pork patties with rice vermicelli, fresh herbs, and sweet-sour fish sauce." data-vi="Chả nướng với bún, rau thơm, và nước mắm chua ngọt.">Grilled pork patties with rice vermicelli, fresh herbs, and sweet-sour fish sauce.</p>
+                    <div class="price">55,000₫</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="info-section">
+        <div class="info-grid">
+            <div class="info-card">
+                <div class="icon">🕐</div>
+                <h3 data-en="Opening Hours" data-vi="Giờ Mở Cửa">Opening Hours</h3>
+                <div class="hours-table">
+                    <div class="hours-row">
+                        <span data-en="Monday - Friday" data-vi="Thứ 2 - Thứ 6">Monday - Friday</span>
+                        <span>07:00 - 21:00</span>
+                    </div>
+                    <div class="hours-row">
+                        <span data-en="Saturday - Sunday" data-vi="Thứ 7 - Chủ Nhật">Saturday - Sunday</span>
+                        <span>07:00 - 22:00</span>
+                    </div>
+                </div>
+            </div>
+            <div class="info-card">
+                <div class="icon">📍</div>
+                <h3 data-en="Location" data-vi="Địa Chỉ">Location</h3>
+                <p data-en="78 Nguyen Thai Hoc Street<br>Da Nang City, Vietnam" data-vi="78 Nguyen Thai Hoc<br>Đà Nẵng, Việt Nam">78 Nguyen Thai Hoc Street<br>Da Nang City, Vietnam</p>
+            </div>
+            <div class="info-card">
+                <div class="icon">📞</div>
+                <h3 data-en="Contact" data-vi="Liên Hệ">Contact</h3>
+                <p>☎️ +84 90 234 5678</p>
+                <p>📧 info@danangrestaurant.com</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2 class="section-title" data-en="Food Gallery" data-vi="Thư Viện Ảnh Đồ Ăn">Food Gallery</h2>
+        <div class="gallery-grid">
+            <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400" alt="Pho">
+            <img src="https://images.unsplash.com/photo-1562967916-eb82221dfb44?w=400" alt="Banh Mi">
+            <img src="https://images.unsplash.com/photo-1503764654157-72d979d9af2f?w=400" alt="Spring Rolls">
+            <img src="https://images.unsplash.com/photo-1555126634-323283e090fa?w=400" alt="Bun Cha">
+        </div>
+    </div>
+    
+    <div class="contact-section" id="contact">
+        <h2 class="section-title" data-en="Reserve a Table" data-vi="Đặt Bàn Ngay">Reserve a Table</h2>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <p><strong data-en="We recommend reservations for dinner on weekends." data-vi="Chúng tôi khuyên đặt bàn trước vào cuối tuần.">We recommend reservations for dinner on weekends.</strong></p>
+                <p>📍 78 Nguyen Thai Hoc, Da Nang</p>
+                <p>☎️ +84 90 234 5678</p>
+                <p>📧 info@danangrestaurant.com</p>
+                <p>🕐 <span data-en="Open daily 07:00 - 22:00" data-vi="Mở cửa hàng ngày 07:00 - 22:00">Open daily 07:00 - 22:00</span></p>
+            </div>
+            
+            <div class="contact-form">
+                <form onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label data-en="Your Name" data-vi="Tên Của Bạn">Your Name</label>
+                        <input type="text" required placeholder="Enter your name / Nhập tên của bạn">
+                    </div>
+                    <div class="form-group">
+                        <label data-en="Phone Number" data-vi="Số Điện Thoại">Phone Number</label>
+                        <input type="tel" required placeholder="+84 ...">
+                    </div>
+                    <div class="form-group">
+                        <label data-en="Date & Time" data-vi="Ngày & Giờ">Date & Time</label>
+                        <input type="datetime-local" required>
+                    </div>
+                    <div class="form-group">
+                        <label data-en="Number of Guests" data-vi="Số Khách">Number of Guests</label>
+                        <select>
+                            <option>1 - 2</option>
+                            <option>3 - 4</option>
+                            <option>5 - 6</option>
+                            <option>6+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label data-en="Message" data-vi="Lời Nhắn">Message</label>
+                        <textarea placeholder="Special requests / Yêu cầu đặc biệt"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn" data-en="Send Reservation" data-vi="Gửi Yêu Cầu Đặt Bàn">Send Reservation</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>📍 78 Nguyen Thai Hoc, Da Nang | ☎️ +84 90 234 5678</p>
+        <p>🍜 Nhà Hàng Đà Nẵng - Authentic Vietnamese Restaurant</p>
+    </footer>
+    
+    <div class="floating-contact">
+        <a href="https://wa.me/84902345678" title="WhatsApp">💬</a>
+    </div>
+    
+    <script>
+        let currentLang = 'en';
+        
+        function toggleLang() {
+            currentLang = currentLang === 'en' ? 'vi' : 'en';
+            document.querySelectorAll('[data-en]').forEach(el => {
+                const text = el.getAttribute('data-' + currentLang);
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = text;
+                } else {
+                    el.textContent = text;
+                }
+            });
+        }
+        
+        function handleSubmit(e) {
+            e.preventDefault();
+            alert(currentLang === 'en' ? 'Thank you! We will confirm your reservation soon.' : 'Cảm ơn bạn! Chúng tôi sẽ xác nhận đặt bàn sớm.');
+        }
+    </script>
+</body>
+</html>
