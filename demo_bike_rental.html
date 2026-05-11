@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thuê Xe Máy Đà Nẵng - Motorbike Rental Da Nang</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; color: #333; line-height: 1.6; }
+        
+        /* Header */
+        header { background: linear-gradient(135deg, #ff6b35, #ff8c42); color: white; padding: 20px 0; text-align: center; }
+        header h1 { font-size: 2.2em; margin-bottom: 5px; }
+        header p { font-size: 1.1em; opacity: 0.95; }
+        .lang-toggle { position: absolute; top: 15px; right: 20px; background: rgba(255,255,255,0.2); border: none; color: white; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9em; }
+        
+        /* Hero */
+        .hero { background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200') center/cover; height: 400px; display: flex; align-items: center; justify-content: center; color: white; text-align: center; padding: 20px; }
+        /* Using images that show typical Vietnamese motorbikes - Honda Wave, Yamaha Sirius type bikes */
+        .hero h2 { font-size: 2em; margin-bottom: 15px; }
+        .hero p { font-size: 1.2em; max-width: 600px; margin: 0 auto; }
+        .cta-button { background: #ff6b35; color: white; padding: 15px 35px; border: none; border-radius: 30px; font-size: 1.1em; cursor: pointer; margin-top: 20px; text-decoration: none; display: inline-block; }
+        
+        /* Fleet Section */
+        .section { padding: 60px 20px; max-width: 1100px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 1.8em; color: #ff6b35; margin-bottom: 40px; }
+        .fleet-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .bike-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .bike-card:hover { transform: translateY(-5px); }
+        .bike-card img { width: 100%; height: 200px; object-fit: cover; }
+        .bike-card .info { padding: 20px; }
+        .bike-card h3 { color: #333; margin-bottom: 8px; }
+        .bike-card .price { color: #ff6b35; font-size: 1.3em; font-weight: bold; }
+        .bike-card .price span { font-size: 0.7em; color: #888; font-weight: normal; }
+        
+        /* Pricing Table */
+        .pricing-table { background: #f9f9f9; border-radius: 15px; padding: 30px; margin-top: 40px; }
+        .pricing-row { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #eee; }
+        .pricing-row:last-child { border: none; }
+        .pricing-row .name { font-weight: 600; }
+        .pricing-row .price { color: #ff6b35; font-weight: bold; }
+        
+        /* Contact Section */
+        .contact-section { background: #ff6b35; color: white; padding: 60px 20px; }
+        .contact-section .section-title { color: white; }
+        .contact-form { max-width: 600px; margin: 0 auto; background: rgba(255,255,255,0.1); padding: 40px; border-radius: 15px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px 15px; border: none; border-radius: 8px; font-size: 1em; }
+        .form-group textarea { height: 100px; resize: vertical; }
+        .submit-btn { background: white; color: #ff6b35; padding: 15px 40px; border: none; border-radius: 30px; font-size: 1.1em; font-weight: bold; cursor: pointer; width: 100%; }
+        
+        /* Map */
+        .map-container { width: 100%; height: 300px; border-radius: 15px; overflow: hidden; margin-top: 30px; }
+        .map-container iframe { width: 100%; height: 100%; border: none; }
+        
+        /* Footer */
+        footer { background: #222; color: white; padding: 30px 20px; text-align: center; }
+        footer p { opacity: 0.8; }
+        
+        /* Floating contact */
+        .floating-contact { position: fixed; bottom: 20px; right: 20px; z-index: 100; }
+        .floating-contact a { display: block; width: 55px; height: 55px; border-radius: 50%; background: #25d366; color: white; text-align: center; line-height: 55px; font-size: 28px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); text-decoration: none; }
+        
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.6em; }
+            .hero h2 { font-size: 1.4em; }
+            .section { padding: 40px 15px; }
+            .contact-form { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🏍️ Thuê Xe Máy Đà Nẵng</h1>
+        <p>Motorbike Rental in Da Nang City</p>
+        <button class="lang-toggle" onclick="toggleLang()">EN / VI</button>
+    </header>
+    
+    <div class="hero">
+        <div>
+            <h2 data-en="Explore Da Nang on Two Wheels" data-vi="Khám Phá Đà Nẵng Bằng Xe Máy">Explore Da Nang on Two Wheels</h2>
+            <p data-en="Premium motorbikes for rent. Daily, weekly, monthly rates available. Free delivery to your hotel in Da Nang center." data-vi="Xe máy cao cấp cho thuê. Thuê theo ngày, tuần, tháng. Giao xe miễn phí tại khách sạn trung tâm Đà Nẵng.">Premium motorbikes for rent. Daily, weekly, monthly rates available. Free delivery to your hotel in Da Nang center.</p>
+            <a href="#contact" class="cta-button" data-en="Book Now" data-vi="Đặt Xe Ngay">Book Now</a>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2 class="section-title" data-en="Our Fleet" data-vi="Đội Xe Của Chúng Tôi">Our Fleet</h2>
+        <div class="fleet-grid">
+            <div class="bike-card">
+                <img src="https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=600" alt="Honda Wave -Xe máy Honda Wave">
+                <div class="info">
+                    <h3 data-en="Honda Wave" data-vi="Honda Wave">Honda Wave</h3>
+                    <p data-en="Automatic, 100cc - Most popular rental bike in Vietnam" data-vi="Tự động, 100cc - Xe cho thuê phổ biến nhất Việt Nam">Automatic, 100cc - Most popular rental bike in Vietnam</p>
+                    <div class="price">150,000₫ <span data-en="/day" data-vi="/ngày">/day</span></div>
+                </div>
+            </div>
+            <div class="bike-card">
+                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600" alt="Honda Vision - Xe máy Honda Vision">
+                <div class="info">
+                    <h3 data-en="Honda Vision" data-vi="Honda Vision">Honda Vision</h3>
+                    <p data-en="Automatic, 125cc - Modern & fuel efficient" data-vi="Tự động, 125cc - Hiện đại và tiết kiệm xăng">Automatic, 125cc - Modern & fuel efficient</p>
+                    <div class="price">200,000₫ <span data-en="/day" data-vi="/ngày">/day</span></div>
+                </div>
+            </div>
+            <div class="bike-card">
+                <img src="https://images.unsplash.com/photo-1591637335224-08c4e29a18be?w=600" alt="Yamaha Sirius">
+                <div class="info">
+                    <h3 data-en="Yamaha Sirius" data-vi="Yamaha Sirius">Yamaha Sirius</h3>
+                    <p data-en="Manual, 125cc" data-vi="Số sàn, 125cc">Manual, 125cc</p>
+                    <div class="price">180,000₫ <span data-en="/day" data-vi="/ngày">/day</span></div>
+                </div>
+            </div>
+            <div class="bike-card">
+                <img src="https://images.unsplash.com/photo-1571008887538-b36bb32f4571?w=600" alt="Honda Air Blade">
+                <div class="info">
+                    <h3 data-en="Honda Air Blade" data-vi="Honda Air Blade">Honda Air Blade</h3>
+                    <p data-en="Automatic, 150cc" data-vi="Tự động, 150cc">Automatic, 150cc</p>
+                    <div class="price">250,000₫ <span data-en="/day" data-vi="/ngày">/day</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="pricing-table">
+            <h3 style="margin-bottom: 20px; text-align: center;" data-en="Rental Rates" data-vi="Bảng Giá Thuê Xe">Rental Rates</h3>
+            <div class="pricing-row">
+                <span class="name" data-en="Daily Rate (24h)" data-vi="Thuê theo ngày (24h)">Daily Rate (24h)</span>
+                <span class="price">150,000₫ - 300,000₫</span>
+            </div>
+            <div class="pricing-row">
+                <span class="name" data-en="Weekly Rate (7 days)" data-vi="Thuê theo tuần (7 ngày)">Weekly Rate (7 days)</span>
+                <span class="price">900,000₫ - 1,800,000₫</span>
+            </div>
+            <div class="pricing-row">
+                <span class="name" data-en="Monthly Rate (30 days)" data-vi="Thuê theo tháng (30 ngày)">Monthly Rate (30 days)</span>
+                <span class="price">3,000,000₫ - 6,000,000₫</span>
+            </div>
+            <div class="pricing-row">
+                <span class="name" data-en="Hotel Delivery" data-vi="Giao xe tại khách sạn">Hotel Delivery</span>
+                <span class="price" data-en="FREE" data-vi="MIỄN PHÍ">FREE</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="contact-section" id="contact">
+        <h2 class="section-title" data-en="Contact Us" data-vi="Liên Hệ Đặt Xe">Contact Us</h2>
+        <div class="contact-form">
+            <form onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label data-en="Your Name" data-vi="Tên Của Bạn">Your Name</label>
+                    <input type="text" required placeholder="Enter your name / Nhập tên của bạn">
+                </div>
+                <div class="form-group">
+                    <label data-en="Phone Number" data-vi="Số Điện Thoại">Phone Number</label>
+                    <input type="tel" required placeholder="+84 ...">
+                </div>
+                <div class="form-group">
+                    <label data-en="Bike Type" data-vi="Loại Xe">Bike Type</label>
+                    <select>
+                        <option>Honda Wave</option>
+                        <option>Honda Vision</option>
+                        <option>Yamaha Sirius</option>
+                        <option>Honda Air Blade</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label data-en="Rental Period" data-vi="Thời Gian Thuê">Rental Period</label>
+                    <input type="text" placeholder="e.g. 3 days / 3 ngày">
+                </div>
+                <div class="form-group">
+                    <label data-en="Message" data-vi="Lời Nhắn">Message</label>
+                    <textarea placeholder="Your message / Lời nhắn của bạn"></textarea>
+                </div>
+                <button type="submit" class="submit-btn" data-en="Send Request" data-vi="Gửi Yêu Cầu">Send Request</button>
+            </form>
+        </div>
+        
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61364.91787771363!2d108.16777525!3d16.05444445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31421c7d1b1b1b1b%3A0x7b1b1b1b1b1b1b1b!2sDa%20Nang%2C%20Vietnam!5e0!3m2!1sen!2s!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </div>
+    
+    <footer>
+        <p>📍 123 Nguyen Chi Thanh, Da Nang | ☎️ +84 90 123 4567</p>
+        <p>🏍️ Thuê Xe Máy Đà Nẵng - Motorbike Rental Da Nang</p>
+    </footer>
+    
+    <div class="floating-contact">
+        <a href="https://wa.me/84901234567" title="WhatsApp">💬</a>
+    </div>
+    
+    <script>
+        let currentLang = 'en';
+        
+        function toggleLang() {
+            currentLang = currentLang === 'en' ? 'vi' : 'en';
+            document.querySelectorAll('[data-en]').forEach(el => {
+                const text = el.getAttribute('data-' + currentLang);
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = text;
+                } else {
+                    el.textContent = text;
+                }
+            });
+        }
+        
+        function handleSubmit(e) {
+            e.preventDefault();
+            alert(currentLang === 'en' ? 'Thank you! We will contact you soon.' : 'Cảm ơn bạn! Chúng tôi sẽ liên hệ sớm.');
+        }
+    </script>
+</body>
+</html>
